@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppListaSupermercado.View.ListaProdutos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo" x:Name="Btn_NovoProduto" Clicked="Btn_NovoProduto_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+               
+                <Label Text="Lista de Compras"
+                       FontSize="Body"
+                       HorizontalOptions="CenterAndExpand" />
+
+                <RefreshView x:Name="atualizando" IsRefreshing="True">
+
+                    <ListView x:Name="lista_produtos" ItemSelected="lista_produtos_ItemSelected">
+                        <ListView.Header>
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="*,*,*">
+                                <Label Grid.Row="0" Grid.Column="0" Text="ID" FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="Produto" FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="Quantidade" FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="3" Text="Valor Estimado Un." FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="4" Text="Total Estimado" FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="5" Text="Valor Pago Un." FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="6" Text="Total Pago" FontSize="15" />
+                                <Label Grid.Row="0" Grid.Column="7" Text="Comprado" FontSize="15" />
+                            </Grid>
+                        </ListView.Header>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Remover" x:Name="Btn_Remover" Clicked="Btn_Remover_Clicked" />
+                                    </ViewCell.ContextActions>
+
+                                    <Grid RowDefinitions="Auto" 
+                                          ColumnDefinitions="*,*,*">
+
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Quantidade}" />
+                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding ValorEstimado}" />
+                                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding TotalEstimado}" />
+                                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding ValorReal}" />
+                                        <Label Grid.Row="0" Grid.Column="5" Text="{Binding TotalReal}" />
+
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RefreshView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
